@@ -1,35 +1,53 @@
 package com.iglaz.astonbase.astonwork.collections;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 public class Array {
     public static void main(String[] args) {
-        CustomArrayList array = new CustomArrayList(12,5,1,6,7);
-        array.print();
-        
-        array.add(5);
-        array.print();
-        
-        int[] list = {5,4,3,2,1};
-        array.addall(list);
-        array.print();
+        CustomArrayList<Integer> intarray = new CustomArrayList(12,5,1,6,7);
+        intarray.print();
+        intarray.add(5);
+        intarray.print();
+        Collection<Integer> collection = Arrays.asList(1,2,3,4,5);
+        intarray.addall(collection);
+        intarray.print();
+        intarray.set(5, 0);
+        intarray.print();
+        System.out.println(intarray.getelement(5));
+        intarray.remove(5);
+        intarray.print();
+        System.out.println(intarray.rezervedlenght());
+        intarray.add(5);
+        intarray.add(5);
+        System.out.println(intarray.rezervedlenght());
+        intarray.sort();
+        intarray.print();
+        intarray.sort(false);
+        intarray.print();
 
-        array.set(5, 0);
-        array.print();
-        
-        System.out.println(array.get(5));
-
-        array.remove(5);
-        array.print();
-
-        System.out.println(array.rezervedlenght());
-
-        array.add(5);
-        array.add(5);
-        System.out.println(array.rezervedlenght());
-
-        array.sort();
-        array.print();
-
-        array.sort(false);
-        array.print();
+        CustomArrayList stringarray = new CustomArrayList<>();
+        stringarray.add("first");
+        stringarray.add("второй");
+        stringarray.add("third");
+        stringarray.print();
+        stringarray.add("");
+        stringarray.print();
+        Collection<String> collection2 = Arrays.asList("g","d","r");
+        stringarray.addall(collection2);
+        stringarray.print();
+        stringarray.set("4", 0);
+        stringarray.print();
+        System.out.println(stringarray.getelement(5));
+        stringarray.remove(5);
+        stringarray.print();
+        System.out.println(stringarray.rezervedlenght());
+        stringarray.add("g");
+        stringarray.add("r");
+        System.out.println(stringarray.rezervedlenght());
+        stringarray.sort();
+        stringarray.print();
+        stringarray.sort(false);
+        stringarray.print();
     }
 }

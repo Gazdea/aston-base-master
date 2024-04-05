@@ -1,4 +1,4 @@
-package com.iglaz.astonbase.astonwork.stream;
+package com.iglaz.astonbase.astonwork.streams;
 
 import java.util.Arrays;
 import java.util.List;

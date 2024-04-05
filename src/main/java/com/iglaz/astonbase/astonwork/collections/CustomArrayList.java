@@ -1,7 +1,8 @@
 package com.iglaz.astonbase.astonwork.collections;
-
+import java.util.List;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.ArrayList;
 
 public class CustomArrayList<T extends Comparable<T>> {
     private T[] elements;
@@ -14,6 +15,11 @@ public class CustomArrayList<T extends Comparable<T>> {
             System.out.print(elements[i] + ", ");
         }
         System.out.println();
+    }
+    //Конструктор с параметром колекции
+    public CustomArrayList(CustomArrayList<T> collection) {
+        this.elements = collection.elements;
+        this.size = collection.size;
     }
     
     //Конструктор без параметров
@@ -115,6 +121,30 @@ public class CustomArrayList<T extends Comparable<T>> {
             }
         }
     }
+    
+    ////Статический метод сортировки
+    //public static <T extends Comparable<? super T>> void sort(Collection<T> collection, boolean reversed) {
+    //    List<T> list = new ArrayList<>(collection);
+    //    
+    //    int size = list.size();
+    //    for (int i = 0; i < size; i++) {
+    //        boolean flag = false;
+    //        for (int j = 0; j < size - i - 1; j++) {
+    //            if ((list.get(j).compareTo(list.get(j + 1)) > 0 && reversed) || (list.get(j).compareTo(list.get(j + 1)) < 0 && !reversed)) {
+    //                T temp = list.get(j);
+    //                list.set(j, list.get(j + 1));
+    //                list.set(j + 1, temp);
+    //                flag = true;
+    //            }
+    //        }
+    //        if (!flag) {
+    //            break;
+    //        }
+    //    }
+    //    
+    //    collection.clear();
+    //    collection.addAll(list);
+    //}
 
     //Обновление размера
      private void resize() {

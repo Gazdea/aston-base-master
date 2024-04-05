@@ -31,7 +31,7 @@ public class Array {
         stringarray.add("второй");
         stringarray.add("third");
         stringarray.print();
-        stringarray.add("");
+        stringarray.add("f");
         stringarray.print();
         Collection<String> collection2 = Arrays.asList("g","d","r");
         stringarray.addall(collection2);
@@ -49,5 +49,14 @@ public class Array {
         stringarray.print();
         stringarray.sort(false);
         stringarray.print();
+
+        CustomArrayList intarray2 = new CustomArrayList<>(intarray);
+        intarray.print();
+        intarray2.print();
+        intarray.add(25);
+        intarray.print();
+        intarray2.print();
+
+        //intarray2.sort(intarray2, false);
     }
 }

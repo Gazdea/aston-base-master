@@ -60,7 +60,7 @@ public class PuttingIntoPractice {
         //5. Выяснить, существует ли хоть один трейдер из Милана.
         System.out.println("5. Выяснить, существует ли хоть один трейдер из Милана.");
         
-         Boolean names3 = transactions.stream()
+        Boolean names3 = transactions.stream()
                 .map(t -> t.getTrader().getCity().equals("Milan"))
                 .anyMatch(t -> t);
         System.out.println(names3);

@@ -1,4 +1,4 @@
-package com.iglaz.astonbase.lesson5.homework;
+package com.iglaz.astonbase.astonwork.stream;
 
 import java.util.Objects;
 

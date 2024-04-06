@@ -18,12 +18,11 @@ public class Sorting {
         Integer[] number = {12, 23 ,43};
         List<Integer> integers = List.of(123, 42, 24);
         List<Integer> list1 = Arrays.asList(number);
-
         Map<Integer, String> string2 = Map.ofEntries(Map.entry(22, "Hello"));
 
         Map<String, Integer> treeMap = new TreeMap<>(Map.of("zz", 22,
-                "aaaa", 22,
-                "ccc", 777));
+            "aaaa", 22,
+            "ccc", 777));
 
         System.out.println(treeMap);;
     }

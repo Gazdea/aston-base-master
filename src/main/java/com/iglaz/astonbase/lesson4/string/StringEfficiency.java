@@ -6,11 +6,13 @@ public class StringEfficiency {
 
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < 100_000; i++) {
-            result.append(i);
-            result.reverse();
+            //result +=i;
+             result.append(i);
+             result.reverse();
         }
 
         long finishTime = System.currentTimeMillis();
         System.out.println(finishTime - startTime);
+        System.out.println(result);
     }
 }

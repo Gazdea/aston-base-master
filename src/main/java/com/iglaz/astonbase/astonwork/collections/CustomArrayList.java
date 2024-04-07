@@ -1,10 +1,7 @@
 package com.iglaz.astonbase.astonwork.collections;
 
-import java.util.List;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.ArrayList;
-
 public class CustomArrayList<T extends Comparable<T>> {
     private T[] elements;
     private int size = 0;
@@ -20,9 +17,8 @@ public class CustomArrayList<T extends Comparable<T>> {
 
     // Конструктор с параметром колекции
     public CustomArrayList(Collection<T> collection) {
-        elements = (T[]) new Comparable[collection.size()];
-        collection.toArray(elements);
-        size = elements.length;
+        elements = collection.toArray((T[]) new Comparable[collection.size()]);
+        size = collection.size();
     }
 
     // Конструктор без параметров
@@ -44,9 +40,23 @@ public class CustomArrayList<T extends Comparable<T>> {
         elements[size++] = element;
     }
 
+    // Добавить колекцию
+    public void addAll(Collection<T> collection) {
+        int newSize = size + collection.size();
+        T[] newArray = Arrays.copyOf(this.elements, newSize);
+
+        int index = size;
+        for (T element : collection) {
+            newArray[index++] = element;
+        }
+
+        this.elements = newArray;
+        size = newSize;
+    }
+
     // Добавить несколько элементов
-    public void addAll(Collection<T> elements) {
-        int newSize = size + elements.size();
+    public void addAll(T... elements) {
+        int newSize = size + elements.length;
         T[] newArray = Arrays.copyOf(this.elements, newSize);
 
         int index = size;
@@ -59,7 +69,7 @@ public class CustomArrayList<T extends Comparable<T>> {
     }
 
     // Получить колличество элементов
-    public int length() {
+    public int size() {
         return size;
     }
 
@@ -78,12 +88,12 @@ public class CustomArrayList<T extends Comparable<T>> {
     }
 
     // геттер элементов
-    public T[] getelements() {
+    public T[] getElements() {
         return elements;
     }
 
     // геттер элемента
-    public T getelement(int index) {
+    public T getElement(int index) {
         if (index >= size || index < 0) {
             System.err.println("Index: " + index + ", Size: " + size);
         }
@@ -113,8 +123,8 @@ public class CustomArrayList<T extends Comparable<T>> {
         for (int i = 0; i < size; i++) {
             boolean flag = false;
             for (int j = 0; j < size - i - 1; j++) {
-                if ((elements[j].compareTo(elements[j + 1]) > 0 && reversed)
-                        || (elements[j].compareTo(elements[j + 1]) < 0 && !reversed)) {
+                if ((elements[j]).compareTo(elements[j + 1]) > 0 && reversed
+                        || (elements[j]).compareTo(elements[j + 1]) < 0 && !reversed) {
                     T temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
@@ -127,32 +137,31 @@ public class CustomArrayList<T extends Comparable<T>> {
         }
     }
 
-    // //Статический метод сортировки
-    // public static <T extends Comparable<? super T>> void sort(Collection<T>
-    // collection, boolean reversed) {
-    // List<T> list = new ArrayList<>(collection);
+    // изначальный параметр для sort
+    public static <T extends Comparable<T>> void sort(Collection<T> elements) {
+        sort(elements, true);
+    }
 
-    // int size = list.size();
-    // for (int i = 0; i < size; i++) {
-    // boolean flag = false;
-    // for (int j = 0; j < size - i - 1; j++) {
-    // if ((list.get(j).compareTo(list.get(j + 1)) > 0 && reversed) ||
-    // (list.get(j).compareTo(list.get(j + 1)) < 0 && !reversed)) {
-    // T temp = list.get(j);
-    // list.set(j, list.get(j + 1));
-    // list.set(j + 1, temp);
-    // flag = true;
-    // }
-    // }
-    // if (!flag) {
-    // break;
-    // }
-    // }
-
-    // collection.clear();
-    // collection.addAll(list);
-    // }
-
+    // Сортировка пузырьком с флагом статическая 
+    public static <T extends Comparable<? super T>> void sort(Collection<T> elements, boolean reversed) {
+        int size = elements.size();
+        for (int i = 0; i < size; i++) {
+            boolean flag = false;
+            for (int j = 0; j < size - i - 1; j++) {
+                if (((Comparable) elements.toArray()[j]).compareTo(elements.toArray()[j + 1]) > 0 && reversed
+                        || (((Comparable) elements.toArray()[j]).compareTo(elements.toArray()[j + 1]) < 0 && !reversed)) {
+                    T temp = (T) elements.toArray()[j];
+                    elements.toArray()[j] = elements.toArray()[j + 1];
+                    elements.toArray()[j + 1] = temp;
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                break;
+            }
+        }
+    }
+    
     // Обновление размера
     private void resize() {
         int newSize = elements.length / 2 + elements.length;

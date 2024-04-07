@@ -17,7 +17,7 @@ public class PlaneCircle extends Circle {
     }
 
     public double getCenterY() {
-        return cx;
+        return cy;
     }
 
     public void sayAboutMe() {
